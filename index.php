@@ -5,7 +5,9 @@ require_once("php/config.php");
 $config = array_merge($config, parse_ini_file("config.ini"));
 
 // all the pages
+require_once("php/pages/error.php");
 require_once("php/pages/operad.php");
+require_once("php/pages/operads.php");
 
 // we try to construct the page object
 try {
@@ -28,7 +30,7 @@ try {
   // all the possible page building scenarios
   switch($page) {
     case "operad":
-      $page = new OperadPage($database, "lie");
+      $page = new OperadPage($database, $_GET["key"]);
       break;
   }
 
@@ -44,7 +46,6 @@ catch(PDOException $e) {
   $title = $page->getTitle();
   $head = $page->getHead();
   $main = $page->getMain();
-  $sidebar = $page->getSidebar();
 }
 
 ?>

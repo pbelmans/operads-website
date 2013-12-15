@@ -1,5 +1,9 @@
 <?php
 
+function href($path) {
+  global $config;
+  return $config["directory"] . "/" . $path;
+}
 
 function getOperads() {
   global $database;
@@ -12,4 +16,5 @@ function getOperads() {
     while ($row = $sql->fetch()) return $row;
   }
   return null;
+
 }
