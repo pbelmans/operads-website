@@ -7,8 +7,7 @@ class OperadsPage extends Page {
   public function __construct($database) {
     $this->db = $database;
 
-    $sql = $this->database->prepare("SELECT key, name FROM operads");
-    $sql->bindParam(":tag", $tag);
+    $sql = $this->db->prepare("SELECT key, name FROM operads");
 
     if ($sql->execute()) {
       $this->operads = $sql->fetchAll();
@@ -20,7 +19,7 @@ class OperadsPage extends Page {
 
     $value .= "<ul>";
     foreach ($this->operads as $operad) {
-      $value .= "<li><a href='" . href("operad/" . $operad["key"]) . "'>" . $operad["name"] . "</a>";
+      $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["name"] . "</a>";
     }
     $value .= "</ul>";
 

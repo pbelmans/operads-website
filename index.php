@@ -32,6 +32,10 @@ try {
     case "operad":
       $page = new OperadPage($database, $_GET["key"]);
       break;
+
+    case "operads":
+      $page = new OperadsPage($database);
+      break;
   }
 
   // we request these now so that exceptions are thrown

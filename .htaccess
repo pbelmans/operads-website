@@ -1,0 +1,7 @@
+Options +Indexes
+
+RewriteEngine On
+
+RewriteRule operads$ index.php?page=operads [L]
+RewriteRule operads/(.+)$ index.php?page=operad&key=$1 [L]
+

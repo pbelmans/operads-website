@@ -47,7 +47,7 @@ class OperadPage extends Page {
     // TODO is the Koszul dual always known?
     // if not: add a check whether the field is non-empty
     $value .= "<dt>Koszul dual";
-    $value .= "<dd class='koszul-dual'><a href='" . href("operad/" . $this->operad["dual"]) . "'>" . $this->operad["dual"] . "</a>";
+    $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $this->operad["dual"]) . "'>" . $this->operad["dual"] . "</a>";
 
     //
     // TODO chain complex
