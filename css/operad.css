@@ -1,0 +1,42 @@
+dl.operad {
+  margin-top: -.1.1em;
+}
+
+dl.operad dt {
+  float: left;
+  clear: left;
+  font-weight: bold;
+  width: 170px;
+  text-align: right;
+}
+
+dl.operad dd {
+  border-left: 1px solid #d9d8d1;
+  margin: 0 0 .5em 180px;
+  padding: 0 0 0 10px;
+}
+
+dl.operad dd.dimensions ol {
+  margin: 0 0 .5em 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+dl.operad dd.dimensions ol li {
+  display: inline;
+}
+
+dl.operad dd.dimensions ol li:after {
+  content: ", ";
+  margin-left: -.3em;
+}
+
+dl.operad dd.properties ul {
+  list-style-type: none;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+dl.operad dd.dimensions ol li:last-child:after {
+  content: ", ...";
+}
