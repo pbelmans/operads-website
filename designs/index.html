@@ -8,6 +8,7 @@
       MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
         jax: ["input/TeX", "output/HTML-CSS"],
+        displayAlign: "left",
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
@@ -27,27 +28,57 @@
       <dd class="name">Lie algebra
 
       <dt>Notation
-      <dd class="notation"><var>Lie</var>
+      <dd class="notation">$\mathrm{Lie}$
 
-      <dt>Generating operation(s)</dt>
-      <dd>
+      <dt>Generating operation(s)
+      <dd>$[x,y]$ (bracket)
 
-      <dt>Symmetry properties</dt>
-      <dd>
+      <dt>Symmetry properties
+      <dd>$[x,y]=-[y,x]$ (anti-symmetry)
 
-      <dt>Relations</dt>
-      <dd>
+      <dt>Relations
+      <dd>$[[x,y],z]=[x,[y,z]]+[[x,z],y]$ (Leibniz relation)
 
-      <dt>Generating series</dt>
+      <dt>$\dim\mathrm{Lie}(n)$
+      <dd class="dimensions">
+        <ol>
+          <li>1
+          <li>1
+          <li>2
+          <li>6
+          <li>24
+          <li>120
+          <li>720
+        </ol>
+
+        general term: $\dim\mathrm{Lie}(n)=(n-1)!$
+
+      <dt>Generating series
       <dd>$f^{\mathrm{Lie}}(t)=-\log(1-t)$
 
-      <dt>Properties</dt>
+      <dt>Dual operad
+      <dd><a href="/operads/com">$\mathrm{Lie}^!=\mathrm{Com}$</a>
+
+      <dt>Properties
       <dd class="properties">
         <ul>
           <li><a href="#">binary</a>
           <li><a href="#">quadratic</a>
           <li><a href="#">Koszul</a>
         </ul>
+
+      <dt>Relationships
+      <dd>
+        \begin{equation}
+          \begin{aligned}
+            \mathrm{Ass}\mathrm{-alg}&\to\mathrm{Lie}\mathrm{-alg} \\
+            \mathrm{Lie}\mathrm{-alg}&\to\mathrm{Leib}\mathrm{-alg} \\
+            \mathrm{preLie}\mathrm{-alg}&\to\mathrm{Lie}\mathrm{-alg} \\
+          \end{aligned}
+        \end{equation}
+
+      <dt>Unit
+      <dd>no
     </dl>
   </body>
 </html>
