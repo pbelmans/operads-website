@@ -8,6 +8,8 @@ $config = array_merge($config, parse_ini_file("config.ini"));
 require_once("php/pages/error.php");
 require_once("php/pages/operad.php");
 require_once("php/pages/operads.php");
+require_once("php/pages/property.php");
+require_once("php/pages/properties.php");
 
 // we try to construct the page object
 try {
@@ -35,6 +37,14 @@ try {
 
     case "operads":
       $page = new OperadsPage($database);
+      break;
+
+    case "property":
+      $page = new PropertyPage($database, $_GET["name"]);
+      break;
+
+    case "properties":
+      $page = new PropertiesPage($database);
       break;
   }
 
