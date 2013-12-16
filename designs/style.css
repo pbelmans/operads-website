@@ -34,13 +34,17 @@ dl.operad dd.dimensions ol {
   list-style-type: none;
 }
 
+dl.operad dd.dimensions ol:hover:after {
+  content: " +";
+  color: gray;
+}
+
 dl.operad dd.dimensions ol li {
   display: inline;
 }
 
 dl.operad dd.dimensions ol li:after {
   content: ", ";
-  margin-left: -.3em;
 }
 
 dl.operad dd.properties ul {
