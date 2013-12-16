@@ -6,17 +6,17 @@ dl.operad {
 }
 
 dl.operad dt {
-  position: relative;
-  left: 0;
-  top: .5em;
+  float: left;
+  clear: left;
   font-weight: bold;
-  width: 150px;
+  width: 170px;
+  text-align: right;
 }
 
 dl.operad dd {
   border-left: 1px solid #d9d8d1;
-  margin: -.6em 0 0 160px;
-  padding: 0 0 3px 10px;
+  margin: 0 0 .5em 180px;
+  padding: 0 0 0 10px;
 }
 
 dl.operad dd.dimensions ol {
@@ -31,8 +31,13 @@ dl.operad dd.dimensions ol li {
 
 dl.operad dd.dimensions ol li:after {
   content: ", ";
-  padding-right: 2px;
-  margin-left: -4px;
+  margin-left: -.3em;
+}
+
+dl.operad dd.properties ul {
+  list-style-type: none;
+  margin: 0 0 1em 0;
+  padding: 0;
 }
 
 dl.operad dd.dimensions ol li:last-child:after {

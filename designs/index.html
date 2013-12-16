@@ -68,7 +68,7 @@
         </ul>
 
       <dt>Relationships
-      <dd>
+      <dd><!-- TODO can these somehow be linked? -->
         \begin{equation}
           \begin{aligned}
             \mathrm{Ass}\mathrm{-alg}&\to\mathrm{Lie}\mathrm{-alg} \\
@@ -79,6 +79,77 @@
 
       <dt>Unit
       <dd>no
+
+      <dt>Comment
+      <dd>One of the "three graces": <a href="/operads/lie">$\mathrm{Lie}$</a>, <a href="/operads/ass">$\mathrm{Ass}$</a>, <a href="/operads/com">$\mathrm{Com}$</a>.
+      <dd>Named after Sophus Lie.
+      <dd>Integration: Lie groups.
+    </dl>
+
+    <hr>
+
+    <dl class="operad">
+      <dt>Name
+      <dd class="name">Pre-Lie algebra
+
+      <dt>Notation
+      <dd class="notation">$\mathrm{preLie}$
+
+      <dt>Generating operation(s)
+      <dd>$\{x,y\}$
+
+      <dt>Symmetry properties
+      <dd>none
+
+      <dt>Relations
+      <dd>$\{\{x,y\},z\}-\{x,\{y,z\}\}=\{\{x,z\}y\}-\{x,\{z,y\}\}$
+
+      <dt>$\dim\mathrm{preLie}(n)$
+      <dd class="dimensions">
+        <ol>
+          <li>1
+          <li>2
+          <li>9
+          <li>64
+          <li>625
+          <li>1296
+          <li>117649
+        </ol>
+
+        general term: $\dim\mathrm{preLie}(n)=n^{n-1}$
+
+      <dt>Generating series
+      <dd>$f^{\mathrm{preLie}}(t)=y$ where $y=t\exp(y)$
+
+      <dt>Dual operad
+      <dd><a href="/operads/perm">$\mathrm{preLie}^!=\mathrm{Perm}$</a>
+
+      <dt>Properties
+      <dd class="properties">
+        <ul>
+          <li><a href="#">binary</a>
+          <li><a href="#">quadratic</a>
+          <li><a href="#">Koszul</a>
+        </ul>
+
+      <dt>Relationships
+      <dd><!-- TODO can these somehow be linked? -->
+        \begin{equation}
+          \begin{aligned}
+            \mathrm{preLie}\mathrm{-alg}&\to\mathrm{Lie}\mathrm{-alg}&:&[x,y]=\{x,y\}-\{y,x\} \\
+            \mathrm{Dend}\mathrm{-alg}&\to\mathrm{preLie}\mathrm{-alg}&:&\{x,y\}=x\prec y-y\prec x \\
+            \mathrm{Brace}\mathrm{-alg}&\to\mathrm{preLie}\mathrm{-alg}&:&\text{forgetful functor} \\
+          \end{aligned}
+        \end{equation}
+
+      <dt>Unit
+      <dd>$\{1,x\}=x=\{x,1\}$
+
+      <dt>Comment
+      <dd>This is a <em>right</em> pre-Lie algebra, ...
+
+      <dt>References
+      <dd>F. Chapoton, M. Livernet, <em>Pre-Lie algebras and the rooted trees operad</em>, International Mathematics Research Notices <strong>2001</strong> (8), 395&ndash;408
     </dl>
   </body>
 </html>
