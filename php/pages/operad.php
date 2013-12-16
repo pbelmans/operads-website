@@ -6,7 +6,7 @@ require_once("php/general.php");
 function getOperad($key) {
   global $database;
 
-  $sql = $database->prepare("SELECT key, name, notation, dual, series FROM operads WHERE key = :key");
+  $sql = $database->prepare("SELECT key, name, notation, dual, representation, series FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -21,6 +21,71 @@ function getPropertiesOfOperad($key) {
 
   if ($sql->execute())
     return $sql->fetchAll();
+}
+
+function outputOperad($operad, $properties) {
+  $value = "";
+
+  $value .= "<dl class='operad'>";
+
+  $value .= "<dt>Name";
+  $value .= "<dd class='name'>" . $operad["name"];
+
+  $value .= "<dt>Notation";
+  $value .= "<dd class='notation'>$" . $operad["notation"] . "$";
+
+  // TODO operations
+  // TODO symmetries
+  // TODO relations
+  //
+  // TODO free algebra
+  //
+  // TODO Sym_n-representation
+  $value .= "<dt>$\mathrm{Sym}_n$-representation</dt>";
+  if ($operad["representation"] != "")
+    $value .= "<dd>$" . $operad["notation"] . "(n)=" . $operad["representation"] . "$";
+  else
+    $value .= "<dd>not known";
+  // TODO dimension of the representation (if available, the first 7 dimensions are listed)
+
+  $value .= "<dt>Generating series";
+  if ($operad["series"] != "")
+    $value .= "<dd>" . $operad["series"];
+  else
+    $value .= "<dd>not known";
+  
+  // TODO is the Koszul dual always known?
+  // if not: add a check whether the field is non-empty
+  $value .= "<dt>Koszul dual";
+  $dual = getOperad($operad["dual"]);
+  $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $dual["key"]) . "'>$" . $operad["notation"] . "^!=" . $dual["notation"] . "$</a>";
+
+  //
+  // TODO chain complex
+
+  $value .= "<dt>Properties";
+  $value .= "<dd class='properties'>";
+  $value .= "<ul>";
+  // TODO something if there are no known properties
+  foreach ($properties as $property) {
+    $value .= "<li><a href='" . href("properties/" . $property["name"]) . "'>" . $property["name"] . "</a>";
+  }
+  
+  $value .= "</ul>";
+
+  // TODO alternative
+  //
+  // TODO relationship
+  // 
+  // TODO unit
+  //
+  // TODO comment
+  //
+  // TODO references
+
+  $value .= "</dl>";
+
+  return $value;
 }
 
 
@@ -46,59 +111,7 @@ class OperadPage extends Page {
   public function getMain() {
     $value = "";
 
-    $value .= "<dl class='operad'>";
-
-    $value .= "<dt>Name";
-    $value .= "<dd class='name'>" . $this->operad["name"];
-
-    $value .= "<dt>Notation";
-    $value .= "<dd class='notation'>$" . $this->operad["notation"] . "$";
-
-    // TODO operations
-    // TODO symmetries
-    // TODO relations
-    //
-    // TODO free algebra
-    //
-    // TODO Sym_n-representation
-    // TODO dimension of the representation (if available, the first 7 dimensions are listed)
-
-    $value .= "<dt>Generating series";
-    if ($this->operad["series"] != "")
-      $value .= "<dd>" . $this->operad["series"];
-    else
-      $value .= "<dd>not known";
-    
-    // TODO is the Koszul dual always known?
-    // if not: add a check whether the field is non-empty
-    $value .= "<dt>Koszul dual";
-    $dual = getOperad($this->operad["dual"]);
-    $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $dual["key"]) . "'>$" . $dual["notation"] . "$</a>";
-
-    //
-    // TODO chain complex
-
-    $value .= "<dt>Properties";
-    $value .= "<dd class='properties'>";
-    $value .= "<ul>";
-    // TODO something if there are no known properties
-    foreach ($this->properties as $property) {
-      $value .= "<li><a href='" . href("property/" . $property["name"]) . "'>" . $property["name"] . "</a>";
-    }
-  
-    $value .= "</ul>";
-
-    // TODO alternative
-    //
-    // TODO relationship
-    // 
-    // TODO unit
-    //
-    // TODO comment
-    //
-    // TODO references
-
-    $value .= "</dl>";
+    $value .= outputOperad($this->operad, $this->properties); // TODO maybe it's better to construct an operad object with properties in there as a field
 
     return $value;
   }
