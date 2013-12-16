@@ -6,7 +6,7 @@ require_once("php/general.php");
 function getOperad($key) {
   global $database;
 
-  $sql = $database->prepare("SELECT key, name, notation, dual, representation, series FROM operads WHERE key = :key");
+  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, series FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -47,6 +47,16 @@ function outputOperad($operad, $properties) {
   else
     $value .= "<dd>not known";
   // TODO dimension of the representation (if available, the first 7 dimensions are listed)
+
+  $value .= "<dt>$\dim" . $operad["notation"] . "(n)$";
+  $value .= "<dd class='dimensions'><ol>";
+  foreach (explode(",", substr($operad["dimensions"], 1, -1)) as $dimension)
+    $value .= "<li>" . trim($dimension);
+  $value .= "</ol>";
+  if ($operad["dimensions"] != "")
+    $value .= "General term: $\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$";
+  else
+    $value .= "General term: <span class='unknown'>not known</span>";
 
   $value .= "<dt>Generating series";
   if ($operad["series"] != "")

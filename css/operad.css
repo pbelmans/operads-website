@@ -28,7 +28,6 @@ dl.operad dd.dimensions ol li {
 
 dl.operad dd.dimensions ol li:after {
   content: ", ";
-  margin-left: -.3em;
 }
 
 dl.operad dd.properties ul {
@@ -39,4 +38,8 @@ dl.operad dd.properties ul {
 
 dl.operad dd.dimensions ol li:last-child:after {
   content: ", ...";
+}
+
+span.unknown {
+  font-style: italic;
 }
