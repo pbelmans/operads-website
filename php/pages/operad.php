@@ -6,7 +6,7 @@ require_once("php/general.php");
 function getOperad($key) {
   global $database;
 
-  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, series FROM operads WHERE key = :key");
+  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, dimension_expression, series FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -45,16 +45,20 @@ function outputOperad($operad, $properties) {
   if ($operad["representation"] != "")
     $value .= "<dd>$" . $operad["notation"] . "(n)=" . $operad["representation"] . "$";
   else
-    $value .= "<dd>not known";
+    $value .= "<dd><span class='unknown'>not known</span>";
   // TODO dimension of the representation (if available, the first 7 dimensions are listed)
 
   $value .= "<dt>$\dim" . $operad["notation"] . "(n)$";
-  $value .= "<dd class='dimensions'><ol>";
+  if ($operad["dimension_expression"] != "")
+    $value .= "<dd class='dimensions extendable'>";
+  else
+    $value .= "<dd class='dimensions'>";
+  $value .= "<ol>";
   foreach (explode(",", substr($operad["dimensions"], 1, -1)) as $dimension)
     $value .= "<li>" . trim($dimension);
   $value .= "</ol>";
   if ($operad["dimensions"] != "")
-    $value .= "General term: $\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$";
+    $value .= "General term: <span class='expression' title='(n-1)!'>$\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$</span>";
   else
     $value .= "General term: <span class='unknown'>not known</span>";
 
@@ -62,7 +66,7 @@ function outputOperad($operad, $properties) {
   if ($operad["series"] != "")
     $value .= "<dd>" . $operad["series"];
   else
-    $value .= "<dd>not known";
+    $value .= "<dd><span class='unknown'>not known</span>";
   
   // TODO is the Koszul dual always known?
   // if not: add a check whether the field is non-empty
@@ -114,6 +118,9 @@ class OperadPage extends Page {
     $value = "";
 
     $value .= "<link type='text/css' rel='stylesheet' href='" . href("css/operad.css") . "'>";
+    $value .= "<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>";
+    $value .= "<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/mathjs/0.17.0/math.min.js'></script>";
+    $value .= "<script type='text/javascript' src='" . href("js/dimension.js") . "'></script>";
 
     return $value;
   }

@@ -29,9 +29,9 @@ dl.operad dd.dimensions ol {
   list-style-type: none;
 }
 
-dl.operad dd.dimensions ol:hover:after {
+dl.operad dd.extendable ol:hover:after {
   content: " +";
-  color: gray;
+  color: #83AE84;
 }
 
 dl.operad dd.dimensions ol li {
