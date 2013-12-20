@@ -105,15 +105,16 @@ function outputOperad($operad, $properties) {
   // TODO unit
   //
   // TODO comment
-  //
-  // TODO references
+
   $value .= "<dt>References";
   $value .= "<dd class='references'>";
-  $value .= "<ol>";
-
-  foreach ($operad["references"] as $reference)
-    $value .= bibstring2html(extractBibEntry("bib/bibliography.bib", $reference["citation_key"]), null, false, false); 
-  $value .= "</ol>";
+  if (!empty($operad["references"])) {
+    $value .= "<ol>";
+    foreach ($operad["references"] as $reference)
+      $value .= bibstring2html(extractBibEntry("bib/bibliography.bib", $reference["citation_key"]), null, false, false); 
+    $value .= "</ol>";
+  }
+  $value .= "<p>None"; // TODO maybe just don't output anything
 
   $value .= "</dl>";
 
