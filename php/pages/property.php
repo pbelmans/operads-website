@@ -38,7 +38,7 @@ class PropertyPage extends Page {
     $value .= "<h3>Description</h3>";
     $value .= "<p>Here comes a description";
 
-    $value .= "<h3>Operads satisfying <em>" . $this->name . "</em></h3>";
+    $value .= "<h3>Operads (" . count($this->operads) . ") satisfying <em>" . $this->name . "</em></h3>";
     foreach ($this->operads as $operad) // TODO $operad should already contain the properties
       $value .= outputOperad($operad, getPropertiesOfOperad($operad["key"]));
 
