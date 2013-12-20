@@ -1,0 +1,56 @@
+/* colours
+ * 0E426C
+ * 546F8B
+ * 6586A7
+ * 5F021F
+ * FFC652
+ * 83AE84
+ */
+
+body {
+  width: 780px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0 0 .5em 0;
+}
+
+h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+h1 a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+a {
+  color: #0E426C;
+}
+
+a:hover {
+  color: #546F8B;
+}
+
+ul#menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul#menu li {
+  float: left;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+ul#menu li a {
+  display: block;
+  text-decoration: none;
+}
+
+ul#menu li a:hover {
+  text-decoration: underline;
+}
