@@ -114,7 +114,8 @@ function outputOperad($operad, $properties) {
       $value .= bibstring2html(extractBibEntry("bib/bibliography.bib", $reference["citation_key"]), null, false, false); 
     $value .= "</ol>";
   }
-  $value .= "<p>None"; // TODO maybe just don't output anything
+  else
+    $value .= "<p>None"; // TODO maybe just don't output anything
 
   $value .= "</dl>";
 
