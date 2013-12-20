@@ -121,6 +121,8 @@ class OperadPage extends Page {
   public function getMain() {
     $value = "";
 
+    $value .= "<h2>Operad $" . $this->operad["notation"] . "$</h2>";
+
     $value .= outputOperad($this->operad, $this->properties); // TODO maybe it's better to construct an operad object with properties in there as a field
 
     return $value;

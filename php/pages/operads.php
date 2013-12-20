@@ -17,6 +17,10 @@ class OperadsPage extends Page {
   public function getMain() {
     $value = "";
 
+    $value .= "<h2>Operads</h2>";
+    $value .= "<p>This is the list of all operads in the database.";
+
+    // TODO there should be some ordering?
     $value .= "<ul>";
     foreach ($this->operads as $operad) {
       $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["name"] . "</a>";
