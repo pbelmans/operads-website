@@ -2,7 +2,9 @@ Options +Indexes
 
 RewriteEngine On
 
+RewriteRule about$ index.php?page=about [L]
 RewriteRule operads$ index.php?page=operads [L]
 RewriteRule operads/(.+)$ index.php?page=operad&key=$1 [L]
 RewriteRule properties$ index.php?page=properties [L]
 RewriteRule properties/(.+)$ index.php?page=property&name=$1 [L]
+RewriteRule search$ index.php?page=search [L]

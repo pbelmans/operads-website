@@ -5,11 +5,14 @@ require_once("php/config.php");
 $config = array_merge($config, parse_ini_file("config.ini"));
 
 // all the pages
+require_once("php/pages/about.php");
 require_once("php/pages/error.php");
+require_once("php/pages/index.php");
 require_once("php/pages/operad.php");
 require_once("php/pages/operads.php");
 require_once("php/pages/property.php");
 require_once("php/pages/properties.php");
+require_once("php/pages/search.php");
 
 // we try to construct the page object
 try {
@@ -31,6 +34,14 @@ try {
   
   // all the possible page building scenarios
   switch($page) {
+    case "about":
+      $page = new AboutPage($database);
+      break;
+
+    case "index":
+      $page = new IndexPage($database);
+      break;
+
     case "operad":
       $page = new OperadPage($database, $_GET["key"]);
       break;
@@ -45,6 +56,10 @@ try {
 
     case "properties":
       $page = new PropertiesPage($database);
+      break;
+
+    case "search":
+      $page = new SearchPage($database);
       break;
   }
 

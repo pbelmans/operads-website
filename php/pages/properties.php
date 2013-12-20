@@ -26,6 +26,9 @@ class PropertiesPage extends Page {
       $value .= "<li><a href='" . href("properties/" . $property["name"]) . "'>" . $property["name"] . "</a>";
     $value .= "</ul>";
 
+    $value .= "<h2>Advanced property selection</h2>";
+    $value .= "<p>this will also appear on the search page";
+
     return $value;
   }
 
