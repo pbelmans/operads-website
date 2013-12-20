@@ -2,15 +2,27 @@
 
 require_once("php/page.php");
 require_once("php/general.php");
+require_once("php/bib2html/bib2html.php");
 
 function getOperad($key) {
   global $database;
 
+  // get the operad
   $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, dimension_expression, series FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
-    return $sql->fetch();
+    $operad = $sql->fetch();
+
+  // get the references for this operad
+  $sql = $database->prepare("SELECT key, citation_key FROM operad_reference WHERE key = :key");
+  $sql->bindParam(":key", $key);
+
+  if ($sql->execute())
+    $references = $sql->fetchAll();
+  $operad["references"] = $references;
+
+  return $operad;
 }
 
 function getPropertiesOfOperad($key) {
@@ -84,7 +96,6 @@ function outputOperad($operad, $properties) {
   foreach ($properties as $property) {
     $value .= "<li><a href='" . href("properties/" . $property["name"]) . "'>" . $property["name"] . "</a>";
   }
-  
   $value .= "</ul>";
 
   // TODO alternative
@@ -96,6 +107,13 @@ function outputOperad($operad, $properties) {
   // TODO comment
   //
   // TODO references
+  $value .= "<dt>References";
+  $value .= "<dd class='references'>";
+  $value .= "<ol>";
+
+  foreach ($operad["references"] as $reference)
+    $value .= bibstring2html(extractBibEntry("bib/bibliography.bib", $reference["citation_key"]), null, false, false); 
+  $value .= "</ol>";
 
   $value .= "</dl>";
 
