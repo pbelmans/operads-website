@@ -6,7 +6,7 @@ function getNumberOfOperads() {
   $sql = $database->prepare("SELECT COUNT(key) FROM operads");
 
   if ($sql->execute())
-    return $sql->fetch();
+    return $sql->fetchColumn(0);
 }
 
 function getNumberOfProperties() {
@@ -15,7 +15,7 @@ function getNumberOfProperties() {
   $sql = $database->prepare("SELECT COUNT(name) FROM properties");
 
   if ($sql->execute())
-    return $sql->fetch();
+    return $sql->fetchColumn(0);
 }
 
 function getNumberOfReferences() {
@@ -24,7 +24,7 @@ function getNumberOfReferences() {
   $sql = $database->prepare("SELECT COUNT(citation_key) FROM operad_reference");
 
   if ($sql->execute())
-    return $sql->fetch();
+    return $sql->fetchColumn(0);
 }
 
 ?>

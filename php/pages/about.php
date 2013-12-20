@@ -18,9 +18,9 @@ class AboutPage extends Page {
     $value .= "<h2>Statistics</h2>";
     $value .= "<p>There are";
     $value .= "<ul>"; // TODO link these to the corresponding pages
-    $value .= "<li>" . getNumberOfOperads()[0] . " operads";
-    $value .= "<li>" . getNumberOfReferences()[0] . " references";
-    $value .= "<li>" . getNumberOfProperties()[0] . " properties";
+    $value .= "<li>" . getNumberOfOperads() . " operads";
+    $value .= "<li>" . getNumberOfReferences() . " references";
+    $value .= "<li>" . getNumberOfProperties() . " properties";
     $value .= "</ul>";
 
     return $value;
