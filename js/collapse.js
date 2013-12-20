@@ -4,19 +4,27 @@ $(document).ready(function() {
   // clicking the operad will toggle its information
   $("dl.operad").click(function() {
     $("dt:nth-child(n+5), dd:nth-child(n+5)", this).toggle();
+    toggleText(this);
   });
 
   // add a visual clue that things will change
+  $("dl.operad").append("<p class='toggle'>");
   $("dl.operad").hover(
     function() {
-      $("p.toggle", this).remove();
-      if ($("dt:nth-child(n+5), dd:nth-child(n+5)", this).is(":hidden"))
-        $(this).append("<p class='toggle'>&gt;&gt;"); // TODO some nicer symbol
-      else
-        $(this).append("<p class='toggle'>&lt;&lt;"); // TODO some nicer symbol
+      toggleText(this);
+      $("p.toggle", this).show();
     },
     function() {
-      $("p.toggle", this).remove();
+      $("p.toggle", this).hide();
     }
   );
+
+  // change the toggle symbol according to the visibility of the operad
+  function toggleText(dl) {
+    if ($("dt:nth-child(n+5), dd:nth-child(n+5)", dl).is(":hidden"))
+      $("p.toggle", dl).text(">>"); // TODO some nicer symbol
+    else
+      $("p.toggle", dl).text("<<"); // TODO some nicer symbol
+  };
+
 });
