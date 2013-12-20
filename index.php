@@ -12,6 +12,7 @@ require_once("php/pages/operad.php");
 require_once("php/pages/operads.php");
 require_once("php/pages/property.php");
 require_once("php/pages/properties.php");
+require_once("php/pages/references.php");
 require_once("php/pages/search.php");
 
 // we try to construct the page object
@@ -56,6 +57,10 @@ try {
 
     case "properties":
       $page = new PropertiesPage($database);
+      break;
+
+    case "references":
+      $page = new ReferencesPage($database);
       break;
 
     case "search":
@@ -110,6 +115,7 @@ catch(PDOException $e) {
       <li><a href="<?php print href("operads"); ?>">operads</a>
       <li><a href="<?php print href("properties"); ?>">properties</a>
       <li><a href="<?php print href("search"); ?>">search</a>
+      <li><a href="<?php print href("references"); ?>">references</a>
       <li><a href="<?php print href("about"); ?>">about</a>
     </ul>
     <br style='clear: both;'>
