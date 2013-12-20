@@ -103,6 +103,7 @@ catch(PDOException $e) {
 
   <body>
   <h1><a href="<?php print href(""); ?>">Encycloperad&mdash;an encyclopedia of operads</a></h1>
+  <!-- TODO maybe Operadlas / Operatlas is also a nice name? -->
 
     <ul id="menu">
       <li><a href="<?php print href(""); ?>">home</a>

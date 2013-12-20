@@ -13,9 +13,11 @@ $(document).ready(function() {
     function() {
       toggleText(this);
       $("p.toggle", this).show();
+      $(this).css("cursor", "pointer");
     },
     function() {
       $("p.toggle", this).hide();
+      $(this).css("cursor", "auto");
     }
   );
 
