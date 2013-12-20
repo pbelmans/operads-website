@@ -1,0 +1,49 @@
+form label.block:nth-of-type(1) {
+  margin-top: .5em;
+}
+
+form label.block,
+form span.block {
+  width: 155px;
+  display: inline-block;
+  border-right: 1px solid #d9d8d1;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+
+form span.block {
+  float: left;
+}
+
+form label.inline {
+  width: 120px;
+}
+
+form input[type="search"] {
+  width: 200px;
+  margin-left: 10px;
+}
+
+form label.inline {
+  display: block;
+  float: left;
+}
+
+form label.inline:nth-of-type(6) {
+  clear: left;
+  margin-left: 166px;
+}
+
+form input[type="checkbox"] {
+  margin-left: 8px;
+  vertical-align: 20%;
+}
+
+form button {
+  position: relative;
+  left: 175px;
+  margin-top: 5px;
+}
+
