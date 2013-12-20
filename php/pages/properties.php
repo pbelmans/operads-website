@@ -29,6 +29,10 @@ class PropertiesPage extends Page {
     $value .= "<h2>Advanced property selection</h2>";
     $value .= "<p>this will also appear on the search page";
 
+    $value .= "<h2>Comparison table</h2>";
+    $value .= "<p>if the number of properties is not too big, we could make a table: horizontally the properties, vertically the operads";
+    $value .= "<p>clicking a column would sort it on 'have the property'</p>";
+
     return $value;
   }
 
