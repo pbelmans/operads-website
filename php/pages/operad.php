@@ -8,7 +8,7 @@ function getOperad($key) {
   global $database;
 
   // get the operad
-  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, dimension_expression, series FROM operads WHERE key = :key");
+  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, dimension_expression, series, unit FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -54,10 +54,11 @@ function outputOperad($operad, $properties) {
   //
   // TODO Sym_n-representation
   $value .= "<dt>$\mathrm{Sym}_n$-representation</dt>";
+  $value .= "<dd class='representation'>";
   if ($operad["representation"] != "")
-    $value .= "<dd>$" . $operad["notation"] . "(n)=" . $operad["representation"] . "$";
+    $value .= "$" . $operad["notation"] . "(n)=" . $operad["representation"] . "$";
   else
-    $value .= "<dd><span class='unknown'>not known</span>";
+    $value .= outputUnknown();
   // TODO dimension of the representation (if available, the first 7 dimensions are listed)
 
   $value .= "<dt>$\dim" . $operad["notation"] . "(n)$";
@@ -72,13 +73,14 @@ function outputOperad($operad, $properties) {
   if ($operad["dimensions"] != "")
     $value .= "General term: <span class='expression' title='(n-1)!'>$\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$</span>";
   else
-    $value .= "General term: <span class='unknown'>not known</span>";
+    $value .= "General term: " . outputUnknown();
 
   $value .= "<dt>Generating series";
+  $value .= "<dd class='series'>";
   if ($operad["series"] != "")
-    $value .= "<dd>" . $operad["series"];
+    $value .= "" . $operad["series"];
   else
-    $value .= "<dd><span class='unknown'>not known</span>";
+    $value .= outputUnknown();
   
   // TODO is the Koszul dual always known?
   // if not: add a check whether the field is non-empty
@@ -86,7 +88,6 @@ function outputOperad($operad, $properties) {
   $dual = getOperad($operad["dual"]);
   $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $dual["key"]) . "'>$" . $operad["notation"] . "^!=" . $dual["notation"] . "$</a>";
 
-  //
   // TODO chain complex
 
   $value .= "<dt>Properties";
@@ -101,8 +102,14 @@ function outputOperad($operad, $properties) {
   // TODO alternative
   //
   // TODO relationship
-  // 
-  // TODO unit
+  
+  $value .= "<dt>Unit";
+  $value .= "<dd class='unit'>";
+  if ($operad["unit"] != "")
+    $value .= $operad["unit"];
+  else
+    $value .= outputUnknown();
+  
   //
   // TODO comment
 
@@ -115,13 +122,16 @@ function outputOperad($operad, $properties) {
     $value .= "</ol>";
   }
   else
-    $value .= "<p>None"; // TODO maybe just don't output anything
+    $value .= "None"; // TODO maybe just don't output anything
 
   $value .= "</dl>";
 
   return $value;
 }
 
+function outputUnknown() {
+  return "<span class='unknown'>not known</span>";
+}
 
 class OperadPage extends Page {
   private $operad;

@@ -52,6 +52,10 @@ dl.operad dd.dimensions ol li:last-child:after {
   content: ", ...";
 }
 
+dl.operad dd.properties ul {
+  margin-bottom: 0;
+}
+
 dl.operad dd.references ol {
   margin: 0;
   padding-left: 1.5em;
