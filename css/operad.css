@@ -55,3 +55,19 @@ dl.operad dd.dimensions ol li:last-child:after {
 span.unknown {
   font-style: italic;
 }
+
+span.unknown:hover {
+  color: #5F021F;
+}
+
+p.toggle { /* TODO this is not optimal... */
+  position: relative;
+  left: 755px;
+  top: -20px;
+  font-size: .8em;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  color: #83AE84;
+}

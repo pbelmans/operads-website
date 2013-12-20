@@ -29,7 +29,7 @@ function outputOperad($operad, $properties) {
   $value .= "<dl class='operad'>";
 
   $value .= "<dt>Name";
-  $value .= "<dd class='name'>" . $operad["name"];
+  $value .= "<dd class='name'><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["name"] . "</a>";
 
   $value .= "<dt>Notation";
   $value .= "<dd class='notation'>$" . $operad["notation"] . "$";

@@ -21,6 +21,15 @@ class PropertyPage extends Page {
       foreach ($operads as $operad)
         $this->operads[] = getOperad($operad["key"]);
   }
+
+  public function getHead() {
+    $value = "";
+
+    $value .= OperadPage::getHead();
+    $value .= "<script type='text/javascript' src='" . href("js/collapse.js") . "'></script>";
+
+    return $value;
+  }
   
   public function getMain() {
     $value = "";
@@ -30,10 +39,8 @@ class PropertyPage extends Page {
     $value .= "<p>Here comes a description";
 
     $value .= "<h3>Operads satisfying <em>" . $this->name . "</em></h3>";
-    $value .= "<ul>";
-    foreach ($this->operads as $operad)
-      $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["key"] . "</a>";
-    $value .= "</ul>";
+    foreach ($this->operads as $operad) // TODO $operad should already contain the properties
+      $value .= outputOperad($operad, getPropertiesOfOperad($operad["key"]));
 
     return $value;
   }
