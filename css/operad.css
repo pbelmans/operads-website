@@ -18,6 +18,10 @@ dl.operad dd {
   padding: 0 0 0 10px;
 }
 
+dl.operad div.MathJax_Display {
+  margin: 0;
+}
+
 dl.operad dt:nth-child(3),
 dl.operad dd:nth-child(4) {
   /* using border-image and an image with a few transparent and 1 black pixel on the bottom we can get a better border*/

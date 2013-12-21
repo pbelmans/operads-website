@@ -98,7 +98,8 @@ catch(PDOException $e) {
           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
           processEscapes: true
         },
-        "HTML-CSS": { availableFonts: ["TeX"] }
+        "HTML-CSS": { availableFonts: ["TeX"] },
+        displayAlign: "left"
       });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>

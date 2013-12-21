@@ -15,13 +15,36 @@ function getOperad($key) {
     $operad = $sql->fetch();
 
   // get the references for this operad
-  $sql = $database->prepare("SELECT key, citation_key FROM operad_reference WHERE key = :key");
+  $sql = $database->prepare("SELECT citation_key FROM operad_reference WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
     $references = $sql->fetchAll();
   $operad["references"] = $references;
 
+  // get the expressions for this operad
+  $sql = $database->prepare("SELECT category, expression, description FROM expressions WHERE key = :key");
+  $sql->bindParam(":key", $key);
+
+  if ($sql->execute())
+    $expressions = $sql->fetchAll();
+
+  $operad["operations"] = array();
+  $operad["symmetries"] = array();
+  $operad["relations"] = array();
+  foreach ($expressions as $expression) {
+    switch ($expression["category"]) {
+      case "operation":
+        $operad["operations"][] = $expression;
+        break;
+      case "symmetry":
+        $operad["symmetries"][] = $expression;
+        break;
+      case "relation":
+        $operad["relations"][] = $expression;
+        break;
+    }
+  }
   return $operad;
 }
 
@@ -35,6 +58,26 @@ function getPropertiesOfOperad($key) {
     return $sql->fetchAll();
 }
 
+function outputExpressions($expressions) {
+  $value = "";
+
+  if (count($expressions) == 0)
+    return ""; // TODO or should we output something like unknown? lack of expression doesn't mean that they are unknown though...
+  elseif (count($expressions) == 1)
+    $value .= "\\begin{equation}" . $expressions[0]["expression"] . "\\qquad\\text{" . $expressions[0]["description"] . "}\\end{equation}";
+  else {
+    $value .= "\\begin{equation}\\left\\{\\begin{aligned}{}"; // the {} is to prevent \begin{aligned} from eating [x,y] which is the generating operation for Lie algebras
+    foreach ($expressions as $expression) {
+      $value .= "\n" . $expression["expression"] . "&\\qquad\\text{" . $expression["description"] . "}";
+      if ($expression != end($expressions))
+        $value .= "\\\\";
+    }
+    $value .= "\\end{aligned}\\right.\\end{equation}";
+  }
+
+  return $value;
+}
+
 function outputOperad($operad, $properties) {
   $value = "";
 
@@ -46,13 +89,24 @@ function outputOperad($operad, $properties) {
   $value .= "<dt>Notation";
   $value .= "<dd class='notation'>$" . $operad["notation"] . "$";
 
-  // TODO operations
-  // TODO symmetries
-  // TODO relations
-  //
+  if (count($operad["operations"]) > 0) {
+    $value .= "<dt>Generating operation(s)";
+    $value .= "<dd class='operations'>";
+    $value .= outputExpressions($operad["operations"]);
+  }
+  if (count($operad["symmetries"]) > 0) {
+    $value .= "<dt>Symmetries";
+    $value .= "<dd class='symmetries'>";
+    $value .= outputExpressions($operad["symmetries"]);
+  }
+  if (count($operad["relations"]) > 0) {
+    $value .= "<dt>Relations";
+    $value .= "<dd class='relations'>";
+    $value .= outputExpressions($operad["relations"]);
+  }
+
   // TODO free algebra
   //
-  // TODO Sym_n-representation
   $value .= "<dt>$\mathrm{Sym}_n$-representation</dt>";
   $value .= "<dd class='representation'>";
   if ($operad["representation"] != "")
