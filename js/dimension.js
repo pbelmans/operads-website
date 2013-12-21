@@ -11,6 +11,9 @@ $(document).ready(function() {
     n = $(this).context.children.length + 1;
 
     $(this).append("<li>" + computeDimension(expression, n));
+
+    // stop the event from propagating (i.e. in the collapsible view)
+    event.stopPropagation();
   });
 });
 

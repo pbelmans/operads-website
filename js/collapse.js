@@ -3,8 +3,11 @@ $(document).ready(function() {
   $("dl.operad dt:nth-child(n+5), dl.operad dd:nth-child(n+5)").hide();
   // clicking the operad will toggle its information
   $("dl.operad").click(function() {
-    $("dt:nth-child(n+5), dd:nth-child(n+5)", this).toggle();
-    toggleText(this);
+    // if the clicked element is a link we don't toggle because that induces annoying flickering
+    if (!$(event.target).is("a")) {
+      $("dt:nth-child(n+5), dd:nth-child(n+5)", this).toggle();
+      toggleText(this);
+    }
   });
 
   // add a visual clue that things will change
