@@ -71,7 +71,7 @@ function outputOperad($operad, $properties) {
     $value .= "<li>" . trim($dimension);
   $value .= "</ol>";
   if ($operad["dimensions"] != "")
-    $value .= "General term: <span class='expression' title='(n-1)!'>$\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$</span>";
+    $value .= "General term: <span class='expression' title='" . $operad["dimension_expression"] . "'>$\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$</span>";
   else
     $value .= "General term: " . outputUnknown();
 
