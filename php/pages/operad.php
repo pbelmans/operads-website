@@ -86,7 +86,7 @@ function outputOperad($operad, $properties) {
   // if not: add a check whether the field is non-empty
   $value .= "<dt>Koszul dual";
   $dual = getOperad($operad["dual"]);
-  $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $dual["key"]) . "'>$" . $operad["notation"] . "^!=" . $dual["notation"] . "$</a>";
+  $value .= "<dd class='koszul-dual'><a href='" . href("operads/" . $dual["key"]) . "'>\${" . $operad["notation"] . "}^!=" . $dual["notation"] . "$</a>";
 
   // TODO chain complex
 
