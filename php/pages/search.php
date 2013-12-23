@@ -39,15 +39,15 @@ class SearchPage extends Page {
         <label class='block' for='plaintext-input'>Text</label><input type='search' id='plaintext-input' name='plaintext-input'>
         <br>
         <span class='block'>Fields</span>
-        <label class='inline'><input type='checkbox'> Comment</label>
-        <label class='inline'><input type='checkbox'> Alternative</label>
-        <label class='inline'><input type='checkbox'> Free algebra</label>
-        <label class='inline'><input type='checkbox'> Comment</label>
+        <label class='inline'><input type='checkbox'>Comment</label>
+        <label class='inline'><input type='checkbox'>Alternative</label>
+        <label class='inline'><input type='checkbox'>Free algebra</label>
+        <label class='inline'><input type='checkbox'>Comment</label>
         <br>
-        <label class='inline'><input type='checkbox'> Operations</label>
-        <label class='inline'><input type='checkbox'> Symmetry</label>
-        <label class='inline'><input type='checkbox'> Relations</label>
-        <label class='inline'><input type='checkbox'> Comment</label>
+        <label class='inline'><input type='checkbox'>Operations</label>
+        <label class='inline'><input type='checkbox'>Symmetry</label>
+        <label class='inline'><input type='checkbox'>Relations</label>
+        <label class='inline'><input type='checkbox'>Comment</label>
         <br style='clear: left;'>
         <button type='submit'>Search</button>
       </fieldset>

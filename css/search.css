@@ -1,3 +1,8 @@
+form fieldset {
+  border: 1px solid #d9d8d1;
+  padding-top: 10px;
+}
+
 form label.block:nth-of-type(1) {
   margin-top: .5em;
 }
@@ -38,6 +43,7 @@ form label.inline:nth-of-type(6) {
 
 form input[type="checkbox"] {
   margin-left: 8px;
+  margin-right: .5em;
   vertical-align: 20%;
 }
 
