@@ -8,12 +8,21 @@
  */
 
 body {
-  width: 780px;
+  margin: 0;
 }
 
 h1 {
   font-size: 2em;
   margin: 0 0 .5em 0;
+  background-color: #83AE84;
+  width: 100%;
+  text-align: center;
+  padding: .2em;
+}
+
+div#content {
+  width: 780px;
+  margin: 0 auto;
 }
 
 h1 a {

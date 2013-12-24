@@ -88,7 +88,7 @@ catch(PDOException $e) {
   <head>
     <meta charset="utf-8">
     <title>Encyclopedia of operads<?php print $title; ?></title>
-    <link type="text/style" rel="stylesheet" href="<?php print href("css/main.css"); ?>">
+    <link type="text/css" rel="stylesheet" href="<?php print href("css/main.css"); ?>">
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -108,20 +108,22 @@ catch(PDOException $e) {
   </head>
 
   <body>
-  <h1><a href="<?php print href(""); ?>">Encycloperad&mdash;an encyclopedia of operads</a></h1>
-  <!-- TODO maybe Operadlas / Operatlas is also a nice name? -->
+    <h1><a href="<?php print href(""); ?>">Encycloperad&mdash;an encyclopedia of operads</a></h1>
+    <!-- TODO maybe Operadlas / Operatlas is also a nice name? -->
 
-    <ul id="menu">
-      <li><a href="<?php print href(""); ?>">home</a>
-      <li><a href="<?php print href("operads"); ?>">operads</a>
-      <li><a href="<?php print href("properties"); ?>">properties</a>
-      <li><a href="<?php print href("search"); ?>">search</a>
-      <li><a href="<?php print href("references"); ?>">references</a>
-      <li><a href="<?php print href("about"); ?>">about</a>
-    </ul>
-    <br style='clear: both;'>
+    <div id="content">
+      <ul id="menu">
+        <li><a href="<?php print href(""); ?>">home</a>
+        <li><a href="<?php print href("operads"); ?>">operads</a>
+        <li><a href="<?php print href("properties"); ?>">properties</a>
+        <li><a href="<?php print href("search"); ?>">search</a>
+        <li><a href="<?php print href("references"); ?>">references</a>
+        <li><a href="<?php print href("about"); ?>">about</a>
+      </ul>
+      <br style='clear: both;'>
 
-    <?php print $main; ?>
+      <?php print $main; ?>
+    </div>
   </body>
 </html>
 
