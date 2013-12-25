@@ -1,0 +1,37 @@
+table#comparison {
+  margin: 0 auto;
+}
+
+table#comparison thead th {
+  border-bottom: 1px solid #d9d8d1;
+}
+
+table#comparison thead th:nth-child(2) {
+  border-left: 1px solid #d9d8d1;
+}
+
+table#comparison th {
+  padding: 0 1em 0 .2em;
+}
+
+table#comparison tbody td:nth-child(2) {
+  padding-right: 0;
+  border-left: 1px solid #d9d8d1;
+}
+
+table#comparison td {
+  text-align: center;
+}
+
+table#comparison th.tablesorter-header {
+  background-image: url("../js/tablesorter/css/images/black-unsorted.gif");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+/* we only display checks unsorted, or at the top, hence we use one symbol */
+table#comparison th.tablesorter-headerAsc,
+table#comparison th.tablesorter-headerDesc {
+  background-image: url("../js/tablesorter/css/images/black-asc.gif");
+  background-position: right 35%;
+}
