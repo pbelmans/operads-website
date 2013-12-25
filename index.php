@@ -96,9 +96,9 @@ catch(PDOException $e) {
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-          processEscapes: true
+          processEscapes: true,
         },
-        "HTML-CSS": { availableFonts: ["TeX"] },
+        "HTML-CSS": { availableFonts: ["TeX"], webFont: "Gyre-Pagella" },
         displayAlign: "left"
       });
     </script>
