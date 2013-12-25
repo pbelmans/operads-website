@@ -32,7 +32,7 @@ $(document).ready(function() {
   }
 
   // add a visual clue that things will change
-  $("dl.operad").append("<p class='toggle'>");
+  $("dl.operad dd.name").append("<p class='toggle'>");
   $("dl.operad").hover(
     function(e) { 
       $(e.delegateTarget).mousemove(indicatorHandler);
