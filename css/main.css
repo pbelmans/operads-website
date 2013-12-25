@@ -20,6 +20,10 @@ h1 {
   padding: .2em;
 }
 
+h1 a {
+  display: block;
+}
+
 div#content {
   width: 780px;
   margin: 0 auto;
