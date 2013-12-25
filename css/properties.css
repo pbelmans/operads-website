@@ -35,3 +35,8 @@ table#comparison th.tablesorter-headerDesc {
   background-image: url("../js/tablesorter/css/images/black-asc.gif");
   background-position: right 35%;
 }
+
+table#comparison th.tablesorter-headerDesc:first-child  {
+  background-position: right 65%;
+  background-image: url("../js/tablesorter/css/images/black-desc.gif");
+}
