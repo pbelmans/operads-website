@@ -1,8 +1,17 @@
 var math = mathjs({number: "bignumber"});
 
+math.import({
+  choose: function(n, k) {
+    var result = 1;
+    for (var i = 1; i <= k; i++)
+      result = result * (n - (k - i)) / i;
+    return result;
+  }
+});
+
 function computeDimension(expression, n) {
   // TODO there is a potential issue if the expression contains the letter n in an operator
-  return math.eval(expression.replace("n", n)).toFixed();
+  return math.eval(expression.replace(/n/g, n)).toFixed();
 }
 
 $(document).ready(function() {
