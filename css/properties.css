@@ -4,6 +4,7 @@ table#comparison {
 
 table#comparison thead th {
   border-bottom: 1px solid #d9d8d1;
+  cursor: pointer;
 }
 
 table#comparison thead th:nth-child(2) {
