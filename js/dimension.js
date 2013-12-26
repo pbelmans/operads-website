@@ -1,19 +1,17 @@
 var math = mathjs({number: "bignumber"});
 
+
 math.import({
   choose: function(n, k) {
-    var result = 1;
-    for (var i = 1; i <= k; i++)
-      result = result * (n - (k - i)) / i;
-    return result;
+    return math.divide(math.factorial(math.bignumber(n)), math.multiply(math.factorial(math.bignumber(k)), math.factorial(math.bignumber(n-k))));
   },
   schroeder: function(n) {
     n = parseInt(n);
 
     var result = math.bignumber("0");
     for (var k = 0; k <= n-1; k++)
-      result = math.add(result, math.choose(2*n-k, n) * math.choose(n-1, k));
-    return result / (n+1);
+      result = math.add(result, math.multiply(math.choose(2*n-k, n), math.choose(n-1, k)));
+    return math.divide(result, n+1);
     // TODO remark that in operad-data/operads/2as.json there might be an error in both the generating series (missing factor in the denominator) and the general term (2C_{n-1}?)
   }
 });
