@@ -8,7 +8,7 @@ function getOperad($key) {
   global $database;
 
   // get the operad
-  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, dimension, dimension_expression, series, unit FROM operads WHERE key = :key");
+  $sql = $database->prepare("SELECT key, name, notation, dual, representation, dimensions, oeis, dimension, dimension_expression, series, unit FROM operads WHERE key = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -124,8 +124,11 @@ function outputOperad($operad, $properties) {
   foreach (explode(",", substr($operad["dimensions"], 1, -1)) as $dimension)
     $value .= "<li>" . trim($dimension);
   $value .= "</ol>";
-  if ($operad["dimensions"] != "")
+  if ($operad["dimensions"] != "") {
     $value .= "General term: <span class='expression' data-expression='" . $operad["dimension_expression"] . "'>$\dim" . $operad["notation"] . "(n)=" . $operad["dimension"] . "$</span>";
+    if ($operad["oeis"] != "")
+      $value .= "<br><a href='http://oeis.org/" . $operad["oeis"] . "'><abbr title='Online Encyclopedia of Integer Sequences'>OEIS</abbr>: <var>" . $operad["oeis"] . "</var></a>";
+  }
   else
     $value .= "General term: " . outputUnknown();
 
