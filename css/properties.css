@@ -1,5 +1,21 @@
 table#comparison {
   margin: 0 auto;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+table#comparison thead tr {
+  background-color: rgba(255, 198, 82, .3);
+}
+
+table#comparison td,
+table#comparison th {
+  height: 1.3em;
+  line-height: 1.3em;
+}
+
+table#comparison tbody tr:nth-child(even) {
+  background-color: rgba(255, 198, 82, .15); 
 }
 
 table#comparison thead th {
@@ -8,7 +24,7 @@ table#comparison thead th {
 }
 
 table#comparison th {
-  padding: 0 1em 0 .2em;
+  padding: 0 1em 0 .5em;
 }
 
 table#comparison tbody td:nth-child(2) {
