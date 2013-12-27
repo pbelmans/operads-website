@@ -24,3 +24,10 @@ table#dimensions tbody tr td.expression {
   text-align: center;
   padding: 0 5px;
 }
+
+/* TODO code duplication */
+table#dimensions th.expression:hover:after {
+  content: " +";
+  cursor: pointer;
+  color: #83AE84;
+}

@@ -208,6 +208,7 @@ class OperadPage extends Page {
     $value .= "<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>"; // TODO put this somewhere more general
     $value .= "<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/mathjs/0.17.0/math.min.js'></script>";
     $value .= "<script type='text/javascript' src='" . href("js/dimension.js") . "'></script>";
+    $value .= "<script type='text/javascript' src='" . href("js/operad.js") . "'></script>";
 
     return $value;
   }

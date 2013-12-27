@@ -43,22 +43,25 @@ class OperadsPage extends Page {
     if ($sql->execute())
       $this->operads = $sql->fetchAll();
 
-    $sql = $this->db->prepare("SELECT dimensions, key, name, notation, dimension FROM operads");
+    $sql = $this->db->prepare("SELECT dimensions, key, name, notation, dimension, dimension_expression FROM operads");
     if ($sql->execute())
       $operads = $sql->fetchAll();
 
     foreach ($operads as $operad)
       $this->dimensions[substr($operad["dimensions"], 1, -1)][] = $operad;
 
-    print_r(array_keys($this->dimensions));
     uksort($this->dimensions, compareDimensions);
-    print_r(array_keys($this->dimensions));
   }
 
   public function getHead() {
     $value = "";
 
     $value .= "<link type='text/css' rel='stylesheet' href='" . href("css/operads.css") . "'>";
+    $value .= "<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>"; // TODO put this somewhere more general
+    // TODO get these main JS libraries somewhere better
+    $value .= "<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/mathjs/0.17.0/math.min.js'></script>";
+    $value .= "<script type='text/javascript' src='" . href("js/dimension.js") . "'></script>";
+    $value .= "<script type='text/javascript' src='" . href("js/operads.js") . "'></script>";
 
     return $value;
   }
@@ -82,9 +85,9 @@ class OperadsPage extends Page {
     $value .= "<table id='dimensions'>";
     $value .= "<thead><tr>";
     for ($i = 1; $i <= $numberOfDimensions; $i++)
-      $value .= "<th>" . $i . "</th>";
-    $value .= "<th>general</th>";
-    $value .= "<th>operads</th>";
+      $value .= "<th class='dimension'>" . $i . "</th>";
+    $value .= "<th class='expression'>general</th>";
+    $value .= "<th class='operads'>operads</th>";
     $value .= "</tr></thead>";
 
     $value .= "<tbody>";
@@ -93,7 +96,7 @@ class OperadsPage extends Page {
       if ($dimension == 0) {
         for ($i = 1; $i <= $numberOfDimensions; $i++)
           $value .= "<td class='unknown dimension'>?</td>";
-        $value .= "<td class='unknown expression'>?</td>";
+        $value .= "<td class='unknown expression' data-expression=''>?</td>";
         $value .= "<td class='operads'>";
         foreach ($operads as $operad) {
           // TODO this should be an UL with the appropriate styling
@@ -113,7 +116,7 @@ class OperadsPage extends Page {
         }
 
         // TODO there should be a check whether the general expression is always the same (requires consistent notation!)
-        $value .= "<td class='expression'>$" . $operads[0]["dimension"] . "$</td>";
+        $value .= "<td class='expression' data-expression='" . $operads[0]["dimension_expression"] . "'>$" . $operads[0]["dimension"] . "$</td>";
 
         $value .= "<td class='operads'>"; // TODO this should be a separate function or something, outputListOfOperads as an UL, then we can apply styling whenever we want
         foreach ($operads as $operad) {
