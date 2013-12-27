@@ -120,7 +120,6 @@ catch(PDOException $e) {
         <li><a href="<?php print href("references"); ?>">references</a>
         <li><a href="<?php print href("about"); ?>">about</a>
       </ul>
-      <br style='clear: both;'>
 
       <?php print $main; ?>
     </div>

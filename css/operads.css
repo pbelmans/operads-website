@@ -1,0 +1,26 @@
+/* TODO code duplication from css/properties.css */
+table#dimensions {
+  margin: 0 auto;
+}
+
+table#dimensions thead th {
+  border-bottom: 1px solid #d9d8d1;
+}
+
+table#dimensions tr {
+  line-height: 1.3em;
+}
+
+table#dimensions td {
+  min-width: 20px;
+}
+
+table#dimensions tbody tr td.operads {
+  max-width: 200px;
+}
+
+table#dimensions tbody tr td.dimension,
+table#dimensions tbody tr td.expression {
+  text-align: center;
+  padding: 0 5px;
+}

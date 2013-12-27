@@ -46,13 +46,14 @@ a:hover {
 }
 
 ul#menu {
+  text-align: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
 ul#menu li {
-  float: left;
+  display: inline-block;
   padding-left: 1em;
   padding-right: 1em;
 }
