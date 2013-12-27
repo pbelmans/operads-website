@@ -86,6 +86,7 @@ class OperadsPage extends Page {
     $value .= "<thead><tr>";
     for ($i = 1; $i <= $numberOfDimensions; $i++)
       $value .= "<th class='dimension'>" . $i . "</th>";
+    $value .= "<th class='dimension extendable'>...</th>";
     $value .= "<th class='expression'>general</th>";
     $value .= "<th class='operads'>operads</th>";
     $value .= "</tr></thead>";
@@ -94,9 +95,15 @@ class OperadsPage extends Page {
     foreach ($this->dimensions as $dimension => $operads) {
       $value .= "<tr>";
       if ($dimension == 0) {
+        // dimensions
         for ($i = 1; $i <= $numberOfDimensions; $i++)
           $value .= "<td class='unknown dimension'>?</td>";
+        $value .= "<td class='unknown dimension extendable'>...</td>";
+
+        // expression
         $value .= "<td class='unknown expression' data-expression=''>?</td>";
+
+        // operads
         $value .= "<td class='operads'>";
         foreach ($operads as $operad) {
           // TODO this should be an UL with the appropriate styling
@@ -107,6 +114,7 @@ class OperadsPage extends Page {
         $value .= "</td>";
       }
       else {
+        // dimensions
         $dimensions = explode(",", str_replace(" ", "", $dimension));
         for ($i = 0; $i < $numberOfDimensions; $i++) {
           if ($i < sizeof($dimensions))
@@ -114,10 +122,13 @@ class OperadsPage extends Page {
           else
             $value .= "<td class='unknown dimension'>?</td>";
         }
+        $value .= "<td class='extendable dimension'>...</td>";
 
+        // expression
         // TODO there should be a check whether the general expression is always the same (requires consistent notation!)
         $value .= "<td class='expression' data-expression='" . $operads[0]["dimension_expression"] . "'>$" . $operads[0]["dimension"] . "$</td>";
 
+        // operads
         $value .= "<td class='operads'>"; // TODO this should be a separate function or something, outputListOfOperads as an UL, then we can apply styling whenever we want
         foreach ($operads as $operad) {
           // TODO this should be an UL with the appropriate styling

@@ -7,10 +7,6 @@ table#comparison thead th {
   cursor: pointer;
 }
 
-table#comparison thead th:nth-child(2) {
-  border-left: 1px solid #d9d8d1;
-}
-
 table#comparison th {
   padding: 0 1em 0 .2em;
 }

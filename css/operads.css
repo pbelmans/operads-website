@@ -1,6 +1,5 @@
 /* TODO code duplication from css/properties.css */
 table#dimensions {
-  margin: 0 auto;
 }
 
 table#dimensions thead th {
@@ -16,7 +15,14 @@ table#dimensions td {
 }
 
 table#dimensions tbody tr td.operads {
-  max-width: 200px;
+  min-width: 200px;
+  max-width: 300px;
+  padding-left: 5px;
+}
+
+table#dimensions tbody tr td.expression {
+  border-left: 1px solid #d9d8d1;
+  border-right: 1px solid #d9d8d1;
 }
 
 table#dimensions tbody tr td.dimension,
@@ -26,7 +32,13 @@ table#dimensions tbody tr td.expression {
 }
 
 /* TODO code duplication */
-table#dimensions th.expression:hover:after {
+table#dimensions th.extendable,
+table#dimensions td.extendable {
+  min-width: 30px;
+}
+
+table#dimensions th.extendable:hover:after,
+table#dimensions td.extendable:hover:after {
   content: " +";
   cursor: pointer;
   color: #83AE84;
