@@ -8,23 +8,23 @@ table#comparison thead tr {
   background-color: rgba(255, 198, 82, .3);
 }
 
-table#comparison td,
-table#comparison th {
-  height: 1.3em;
-  line-height: 1.3em;
-}
-
 table#comparison tbody tr:nth-child(even) {
-  background-color: rgba(255, 198, 82, .15); 
+  background-color: rgba(255, 198, 82, .2); 
 }
 
 table#comparison thead th {
   border-bottom: 1px solid #d9d8d1;
   cursor: pointer;
+  line-height: 1.5em;
+}
+
+table#comparison tbody td {
+  line-height: 1.5em;
+  padding: 3px 0 0 0;
 }
 
 table#comparison th {
-  padding: 0 1em 0 .5em;
+  padding: 3px 1em 0 .5em;
 }
 
 table#comparison tbody td:nth-child(2) {
@@ -46,10 +46,10 @@ table#comparison th.tablesorter-header {
 table#comparison th.tablesorter-headerAsc,
 table#comparison th.tablesorter-headerDesc {
   background-image: url("../js/tablesorter/css/images/black-asc.gif");
-  background-position: right 35%;
+  background-position: right 40%;
 }
 
 table#comparison th.tablesorter-headerDesc:first-child  {
-  background-position: right 65%;
+  background-position: right 60%;
   background-image: url("../js/tablesorter/css/images/black-desc.gif");
 }

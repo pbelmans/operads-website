@@ -9,15 +9,20 @@ table#dimensions thead tr {
 }
 
 table#dimensions tbody tr:nth-child(even) {
-  background-color: rgba(255, 198, 82, .15); 
+  background-color: rgba(255, 198, 82, .2); 
 }
 
 table#dimensions thead th {
   border-bottom: 1px solid #d9d8d1;
+  padding: 3px 0 0 0;
 }
 
-table#dimensions tr {
-  line-height: 1.3em;
+table#dimensions thead tr {
+  line-height: 1.5em;
+}
+
+table#dimensions tbody tr {
+  line-height: 1.8em;
 }
 
 table#dimensions td {
