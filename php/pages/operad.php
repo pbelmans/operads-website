@@ -2,7 +2,7 @@
 
 require_once("php/page.php");
 require_once("php/general.php");
-require_once("php/bib2html/bib2html.php");
+require_once("php/bibtex2html/bibtex2html.php");
 
 function getOperad($key) {
   global $database;

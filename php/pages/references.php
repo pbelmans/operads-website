@@ -2,18 +2,27 @@
 
 require_once("php/page.php");
 require_once("php/general.php");
-require_once("php/bib2html/bib2html.php");
+require_once("php/bibtex2html/bibtex2html.php");
+
+function outputBibEntry($entry) {
+  $type = trim(strtolower(substr($entry, 1, strpos($entry, '{') - 1)));
+  $entry = substr(trim(str_replace(array("\n", "\r", "\t"), array(' ', ' ', ' '), $entry)), 0, -2);
+  return bibtex2html($entry, $type, make_accent_table());
+}
 
 class ReferencesPage extends Page {
-  private $properties;
+  private $references;
 
   public function __construct($database) {
     $this->db = $database;
 
-    $sql = $this->db->prepare("SELECT citation_key FROM operad_reference");
+    $sql = $this->db->prepare("SELECT citation_key, operads.key, operads.notation FROM operads, operad_reference WHERE operads.key = operad_reference.key");
 
     if ($sql->execute())
-      $this->references = $sql->fetchAll();
+      $references = $sql->fetchAll();
+
+    foreach ($references as $relation)
+      $this->references[$relation["citation_key"]][] = array("key" => $relation["key"], "notation" => $relation["notation"]);
   }
   
   public function getMain() {
@@ -31,8 +40,13 @@ class ReferencesPage extends Page {
     $value .= "</ul>";
     
     $value .= "<ol>";
-    foreach ($this->references as $reference)
-      $value .= bibstring2html(extractBibEntry("bib/bibliography.bib", $reference["citation_key"]), null, false, false); 
+    foreach ($this->references as $reference => $operads) {
+      $value .= "<li>" . outputBibEntry(extractBibEntry("bib/bibliography.bib", $reference));
+      $value .= "<ul class='referencing'>";
+      foreach ($operads as $operad)
+        $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>$" . $operad["notation"] . "$</a>";
+      $value .= "</ul>";
+    }
     $value .= "</ol>";
 
     return $value;
