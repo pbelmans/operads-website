@@ -1,3 +1,6 @@
 [submodule "js/tablesorter"]
 	path = js/tablesorter
 	url = https://github.com/Mottie/tablesorter.git
+[submodule "php/bibtex2html"]
+	path = php/bibtex2html
+	url = https://github.com/acla/bibtex2html.git
