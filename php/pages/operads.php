@@ -3,54 +3,15 @@
 require_once("php/page.php");
 require_once("php/general.php");
 
-function compareDimensions($a, $b) {
-  // the unknown dimensions should be at the end
-  if ($a == 0)
-    return 1;
-  if ($b == 0)
-    return -1;
-
-  if ($a == $b)
-    return 0;
-
-  // some preprocessing
-  $a = explode(",", str_replace(" ", "", $a));
-  $b = explode(",", str_replace(" ", "", $b));
-
-  // we sort on the behaviour for small n, not the asymptotic behaviour
-  for ($i = 0; $i < min(sizeof($a), sizeof($b)); $i++) {
-    if ($a[$i] < $b[$i])
-      return -1;
-    elseif ($a[$i] > $b[$i])
-      return 1;
-  }
-
-  // "shorter" lists come first
-  if (sizeof($a) < sizeof($b))
-    return -1;
-
-  return 0;
-}
-
 class OperadsPage extends Page {
-  private $dimensions;
   private $operads = array();
 
   public function __construct($database) {
     $this->db = $database;
 
-    $sql = $this->db->prepare("SELECT key, name FROM operads");
+    $sql = $this->db->prepare("SELECT key, name, notation FROM operads");
     if ($sql->execute())
       $this->operads = $sql->fetchAll();
-
-    $sql = $this->db->prepare("SELECT dimensions, key, name, notation, dimension, dimension_expression FROM operads");
-    if ($sql->execute())
-      $operads = $sql->fetchAll();
-
-    foreach ($operads as $operad)
-      $this->dimensions[substr($operad["dimensions"], 1, -1)][] = $operad;
-
-    uksort($this->dimensions, 'compareDimensions');
   }
 
   public static function getHead() {
@@ -70,12 +31,12 @@ class OperadsPage extends Page {
     $value = "";
 
     $value .= "<h2>Operads</h2>";
-    $value .= "<p>This is the list of all operads in the database.";
+    $value .= "<p>This is the list of all operads in the database, together with their categories of algebras.";
 
     // TODO there should be some ordering?
     $value .= "<ul>";
     foreach ($this->operads as $operad) {
-      $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["name"] . "</a>";
+      $value .= "<li><a href='" . href("operads/" . $operad["key"]) . "'>" . $operad["name"] . ":</a> <a href='" . href("operads/" . $operad["key"]) . "'>$" . $operad["notation"] . "$</a>";
     }
     $value .= "</ul>";
 
