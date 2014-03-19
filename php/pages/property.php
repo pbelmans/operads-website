@@ -4,25 +4,29 @@ require_once("php/page.php");
 require_once("php/general.php");
 
 class PropertyPage extends Page {
-  private $name;
+  private $property;
   private $operads = array();
 
-  public function __construct($database, $name) {
+  public function __construct($database, $key) {
     $this->db = $database;
 
-    $this->name = $name;
+    $sql = $this->db->prepare("SELECT key, name, slogan, definition FROM properties WHERE key = :key");
+    $sql->bindParam(":key", $key);
 
-    $sql = $this->db->prepare("SELECT key FROM operad_property WHERE name = :name");
-    $sql->bindParam(":name", $name);
+    if ($sql->execute())
+      $this->property = $sql->fetch();
+
+    $sql = $this->db->prepare("SELECT operad FROM operad_property WHERE property = :key");
+    $sql->bindParam(":key", $key);
 
     if ($sql->execute())
       $operads = $sql->fetchAll();
 
       foreach ($operads as $operad)
-        $this->operads[] = getOperad($operad["key"]);
+        $this->operads[] = getOperad($operad["operad"]);
   }
 
-  public function getHead() {
+  public static function getHead() {
     $value = "";
 
     $value .= OperadPage::getHead();
@@ -34,11 +38,20 @@ class PropertyPage extends Page {
   public function getMain() {
     $value = "";
 
-    $value .= "<h2>Property <em>" . $this->name . "</em></h2>";
-    $value .= "<h3>Description</h3>";
-    $value .= "<p>Here comes a description";
+    $value .= "<h2>Property <em>" . $this->property["name"] . "</em></h2>";
+    $value .= "<p><strong>Slogan</strong> ";
+    if (!empty($this->property["slogan"]))
+      $value .= $this->property["slogan"];
+    else
+      $value .= "<em>not supplied yet</em>";
 
-    $value .= "<h3>Operads (" . count($this->operads) . ") satisfying <em>" . $this->name . "</em></h3>";
+    $value .= "<p><strong>Definition</strong> ";
+    if (!empty($this->property["definition"]))
+      $value .= $this->property["definition"];
+    else
+      $value .= "<em>not supplied yet</em>";
+
+    $value .= "<h3>Operads (" . count($this->operads) . ") satisfying this property</h3>";
     foreach ($this->operads as $operad) // TODO $operad should already contain the properties
       $value .= outputOperad($operad, getPropertiesOfOperad($operad["key"]));
 
