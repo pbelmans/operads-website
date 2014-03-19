@@ -1,4 +1,6 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
 
 // read configuration files
 require_once("php/config.php");
@@ -6,6 +8,7 @@ $config = array_merge($config, parse_ini_file("config.ini"));
 
 // all the pages
 require_once("php/pages/about.php");
+require_once("php/pages/dimensions.php");
 require_once("php/pages/error.php");
 require_once("php/pages/index.php");
 require_once("php/pages/operad.php");
@@ -37,6 +40,10 @@ try {
   switch($page) {
     case "about":
       $page = new AboutPage($database);
+      break;
+
+    case "dimensions":
+      $page = new DimensionsPage($database);
       break;
 
     case "index":
@@ -116,6 +123,7 @@ catch(PDOException $e) {
         <li><a href="<?php print href(""); ?>">home</a>
         <li><a href="<?php print href("operads"); ?>">operads</a>
         <li><a href="<?php print href("properties"); ?>">properties</a>
+        <li><a href="<?php print href("dimensions"); ?>">dimensions</a>
         <li><a href="<?php print href("search"); ?>">search</a>
         <li><a href="<?php print href("references"); ?>">references</a>
         <li><a href="<?php print href("about"); ?>">about</a>

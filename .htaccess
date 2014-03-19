@@ -3,6 +3,7 @@ Options +Indexes
 RewriteEngine On
 
 RewriteRule about$ index.php?page=about [L]
+RewriteRule dimensions$ index.php?page=dimensions [L]
 RewriteRule operads$ index.php?page=operads [L]
 RewriteRule operads/(.+)$ index.php?page=operad&key=$1 [L]
 RewriteRule properties$ index.php?page=properties [L]
