@@ -105,7 +105,7 @@ catch(PDOException $e) {
           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
           processEscapes: true,
         },
-        "HTML-CSS": { availableFonts: ["TeX"], webFont: "Gyre-Pagella" },
+        "HTML-CSS": { availableFonts: ["TeX"], scale: 90, webFont: "Gyre-Pagella" },
         displayAlign: "left"
       });
     </script>
