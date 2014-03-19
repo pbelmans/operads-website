@@ -8,7 +8,7 @@ class SearchPage extends Page {
     $this->db = $database;
   }
 
-  public function getHead() {
+  public static function getHead() {
     $value = "";
 
     $value .= "<link type='text/css' rel='stylesheet' href='" . href("css/search.css") . "'>";
@@ -20,6 +20,7 @@ class SearchPage extends Page {
     $value = "";
 
     $value .= "<h2>Search</h2>";
+    $value .= "<p><em>this is a work in progress, <strong>nothing</strong> is implemented yet</em>";
     $value .= "<p>Some ideas:";
     $value .= "<ol>";
     $value .= "<li>select combinations of properties (this search option will also be present on the properties page then)";

@@ -16,7 +16,7 @@ abstract class Page {
     $this->db = $database;
   }
 
-  public function getHead() {
+  public static function getHead() {
     return "";
   }
   abstract public function getMain();

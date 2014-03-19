@@ -29,6 +29,8 @@ class ReferencesPage extends Page {
     $value = "";
 
     $value .= "<h2>References</h2>";
+    $value .= "<em>this is work in progress</em>";
+    $value .= "<p>the goal is to have a list of all references, as used on the operad pages, and make it browseable in a good way";
 
     $value .= "<p>possible ways of handling references";
     $value .= "<ul>";

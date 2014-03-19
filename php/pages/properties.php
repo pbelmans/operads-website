@@ -23,7 +23,7 @@ class PropertiesPage extends Page {
     }
   }
 
-  public function getHead() {
+  public static function getHead() {
     $value = "";
     
     $value .= "<link type='text/css' rel='stylesheet' href='" . href("css/properties.css") . "'>";
@@ -38,19 +38,20 @@ class PropertiesPage extends Page {
     $value = "";
 
     $value .= "<h2>Properties of operads</h2>";
-    $value .= "<p>Operads can satisfy the following properties. For each of the properties a description and the list of operads satisfying the property is given.";
+    $value .= "<p>Operads can satisfy the following properties:";
 
     $value .= "<ul>";
-    foreach ($this->properties as $property)
+    foreach ($this->properties as $property) {
       $value .= "<li><a href='" . href("properties/" . $property["key"]) . "'>" . $property["name"] . "</a>";
+      if (!empty($property["slogan"]))
+        $value .= "&nbsp;&nbsp;(" . $property["slogan"] . ")"; // TODO improve this: DL, with fixed with DT
+    }
     $value .= "</ul>";
 
-    $value .= "<h2>Advanced property selection</h2>";
-    $value .= "<p>this will also appear on the search page";
+    $value .= "<p>Clicking on a property will give you a more detailed description of the property, and a list of operads satisfying it.";
+    $value .= "<p>If you wish to select operads using combinations of properties, go to the <a href='" . href("search") . "'>search page</a>";
 
     $value .= "<h2>Comparison table</h2>";
-    $value .= "<p>if the number of properties is not too big, we could make a table: horizontally the properties, vertically the operads";
-    $value .= "<p>clicking a column would sort it on 'have the property'</p>";
 
     $value .= "<table id='comparison' class='tablesorter'>";
     $value .= "<thead><tr>";
