@@ -51,7 +51,7 @@ function getOperad($key) {
 function getPropertiesOfOperad($key) {
   global $database;
 
-  $sql = $database->prepare("SELECT properties.key, properties.name, properties.slogan, properties.definition FROM operad_property, properties WHERE properties.key = operad_property.property AND operad_property.property = :key");
+  $sql = $database->prepare("SELECT properties.key, properties.name, properties.slogan, properties.definition FROM operad_property, properties WHERE properties.key = operad_property.property AND operad_property.operad = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
@@ -149,12 +149,15 @@ function outputOperad($operad, $properties) {
 
   $value .= "<dt>Properties";
   $value .= "<dd class='properties'>";
-  $value .= "<ul>";
-  // TODO something if there are no known properties
-  foreach ($properties as $property) {
-    $value .= "<li><a href='" . href("properties/" . $property["name"]) . "'>" . $property["name"] . "</a>";
+  if (!empty($properties)) {
+    $value .= "<ul>";
+    // TODO something if there are no known properties
+    foreach ($properties as $property)
+      $value .= "<li><a href='" . href("properties/" . $property["key"]) . "'>" . $property["name"] . "</a>";
+    $value .= "</ul>";
   }
-  $value .= "</ul>";
+  else
+    $value .= "<em>no known properties</em>";
 
   // TODO alternative
   //
@@ -201,7 +204,7 @@ class OperadPage extends Page {
     $this->properties = getPropertiesOfOperad($key);
   }
 
-  public function getHead() {
+  public static function getHead() {
     $value = "";
 
     $value .= "<link type='text/css' rel='stylesheet' href='" . href("css/operad.css") . "'>";
