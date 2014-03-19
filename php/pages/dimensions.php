@@ -3,6 +3,35 @@
 require_once("php/page.php");
 require_once("php/general.php");
 
+function compareDimensions($a, $b) {
+  // the unknown dimensions should be at the end
+  if ($a == 0)
+    return 1;
+  if ($b == 0)
+    return -1;
+
+  if ($a == $b)
+    return 0;
+
+  // some preprocessing
+  $a = explode(",", str_replace(" ", "", $a));
+  $b = explode(",", str_replace(" ", "", $b));
+
+  // we sort on the behaviour for small n, not the asymptotic behaviour
+  for ($i = 0; $i < min(sizeof($a), sizeof($b)); $i++) {
+    if ($a[$i] < $b[$i])
+      return -1;
+    elseif ($a[$i] > $b[$i])
+      return 1;
+  }
+
+  // "shorter" lists come first
+  if (sizeof($a) < sizeof($b))
+    return -1;
+
+  return 0;
+}
+
 class DimensionsPage extends Page {
   private $dimensions;
 
