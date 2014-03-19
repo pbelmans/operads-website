@@ -43,6 +43,7 @@ $(document).ready(function() {
     }
   );
 
+  // TODO maybe change this from partially transparent to full?
   // change the toggle symbol according to the visibility of the operad
   function toggleText(dl) {
     if ($("dt:nth-child(n+5), dd:nth-child(n+5)", dl).is(":hidden"))
