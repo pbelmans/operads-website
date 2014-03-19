@@ -10,18 +10,16 @@ class PropertiesPage extends Page {
   public function __construct($database) {
     $this->db = $database;
 
-    $sql = $this->db->prepare("SELECT name FROM properties");
+    $sql = $this->db->prepare("SELECT key, name, slogan, definition FROM properties");
     if ($sql->execute())
-      $properties = $sql->fetchAll();
-    foreach ($properties as $property)
-      $this->properties[] = $property["name"];
+      $this->properties = $sql->fetchAll();
 
-    $sql = $this->db->prepare("SELECT operads.key, operads.notation, operad_property.name FROM operads, operad_property WHERE operads.key = operad_property.key");
+    $sql = $this->db->prepare("SELECT operads.key, operads.notation, operad_property.property FROM operads, operad_property WHERE operads.key = operad_property.operad");
     if ($sql->execute())
       $pairs = $sql->fetchAll();
     foreach ($pairs as $pair) {
       $this->operads[$pair["key"]]["notation"] = $pair["notation"];
-      $this->operads[$pair["key"]]["properties"][] = $pair["name"];
+      $this->operads[$pair["key"]]["properties"][] = $pair["property"];
     }
   }
 
@@ -44,7 +42,7 @@ class PropertiesPage extends Page {
 
     $value .= "<ul>";
     foreach ($this->properties as $property)
-      $value .= "<li><a href='" . href("properties/" . $property) . "'>" . $property . "</a>";
+      $value .= "<li><a href='" . href("properties/" . $property["key"]) . "'>" . $property["name"] . "</a>";
     $value .= "</ul>";
 
     $value .= "<h2>Advanced property selection</h2>";
@@ -58,7 +56,7 @@ class PropertiesPage extends Page {
     $value .= "<thead><tr>";
     $value .= "<th>operad</th>";
     foreach ($this->properties as $property)
-      $value .= "<th>" . $property . "</th>";
+      $value .= "<th>" . $property["name"] . "</th>";
     $value .= "</tr></thead>";
 
     $value .= "<tbody>";
@@ -66,7 +64,7 @@ class PropertiesPage extends Page {
       $value .= "<tr>";
       $value .= "<th><a href='" . href("operads/" . $key) . "'>$" . $operad["notation"] . "$</a></th>";
       foreach ($this->properties as $property) {
-        if (in_array($property, $operad["properties"]))
+        if (in_array($property["key"], $operad["properties"]))
           $value .= "<td>&#x2713;</td>";
         else
           $value .= "<td></td>";

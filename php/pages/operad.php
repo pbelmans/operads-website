@@ -51,7 +51,7 @@ function getOperad($key) {
 function getPropertiesOfOperad($key) {
   global $database;
 
-  $sql = $database->prepare("SELECT key, name FROM operad_property WHERE key = :key");
+  $sql = $database->prepare("SELECT properties.key, properties.name, properties.slogan, properties.definition FROM operad_property, properties WHERE properties.key = operad_property.property AND operad_property.property = :key");
   $sql->bindParam(":key", $key);
 
   if ($sql->execute())
