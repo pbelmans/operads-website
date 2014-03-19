@@ -1,3 +1,7 @@
+ul li {
+  line-height: 120%;
+}
+
 /* TODO code duplication from css/properties.css */
 table#dimensions {
   border-spacing: 0;
